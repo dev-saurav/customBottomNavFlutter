@@ -1,3 +1,5 @@
+import 'package:custom_bottom_nav_fab/screens/dashboard.dart';
+import 'package:custom_bottom_nav_fab/screens/settings.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -45,6 +47,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int currentTab = 0;
+  Widget initialTab = Dashboared();
+  final List<Widget> screens = [
+    Dashboared(),
+    Settings(),
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -101,10 +109,47 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: Container(
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  MaterialButton(
+                    child: Icon(Icons.dashboard),
+                    minWidth: 40,
+                    onPressed: () {},
+                  ),
+                  Text(
+                    'Dashboard',
+                  )
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  MaterialButton(
+                    child: Icon(Icons.settings),
+                    minWidth: 40,
+                    onPressed: () {},
+                  ),
+                  Text(
+                    'Settings',
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
